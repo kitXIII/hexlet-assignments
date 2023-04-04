@@ -9,9 +9,8 @@ def fibonacci(num)
   curr = 1
 
   2.upto(num) do
-    tmp = prev
-    prev = curr
-    curr += tmp
+    prev, curr = curr, prev
+    curr += prev
   end
 
   curr
