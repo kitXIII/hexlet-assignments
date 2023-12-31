@@ -8,7 +8,6 @@ class StackTest < Minitest::Test
     stack = Stack.new
 
     assert { stack.to_a == [] }
-    assert stack.size.zero? # rubocop:disable Style/ZeroLengthPredicate
     assert stack.empty?
   end
 
@@ -40,7 +39,6 @@ class StackTest < Minitest::Test
     stack.pop!
 
     assert { stack.to_a == [] }
-    assert stack.size.zero? # rubocop:disable Style/ZeroLengthPredicate
     assert stack.empty?
   end
 
@@ -53,7 +51,6 @@ class StackTest < Minitest::Test
     stack.clear!
 
     assert { stack.to_a == [] }
-    assert stack.size.zero? # rubocop:disable Style/ZeroLengthPredicate
     assert stack.empty?
   end
   # END
