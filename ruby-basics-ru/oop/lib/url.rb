@@ -11,9 +11,9 @@ class Url
 
   def initialize(url)
     @url = URI(url)
-    @params = get_normalized_params(@url.query)
-    @url.query = @params.map { |key, val| "#{key}=#{val}" }
-                        .join('&')
+    @params = (@url.query || '').split('&')
+                                .to_h { |pair| pair.split('=') }
+                                .transform_keys(&:to_sym)
   end
 
   def query_params
@@ -25,22 +25,7 @@ class Url
   end
 
   def <=>(other)
-    to_s <=> other.to_s
-  end
-
-  def to_s
-    @url.to_s
-  end
-
-  private
-
-  def get_normalized_params(query)
-    params = (query || '').split('&')
-                          .to_h { |pair| pair.split('=') }
-
-    params.keys
-          .sort
-          .each_with_object({}) { |k, acc| acc[k.to_sym] = params[k] }
+    [scheme, host, port, query_params] <=> [other.scheme, other.host, other.port, other.query_params]
   end
 end
 # END
