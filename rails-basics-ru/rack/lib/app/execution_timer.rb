@@ -12,9 +12,9 @@ class ExecutionTimer
     finish = Time.now.to_f
 
     time = (finish - start) * 1_000_000
-    next_body = prev_body.push('</br>', time)
+    next_body = prev_body.push('</br>', time.to_s)
 
-    [status, headers, [next_body.join]]
+    [status, headers, next_body]
     # END
   end
 end

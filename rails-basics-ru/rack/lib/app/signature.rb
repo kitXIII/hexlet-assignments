@@ -17,7 +17,7 @@ class Signature
     dig = Digest::SHA2.hexdigest body[0]
     enriched_body = body.push('<br>', dig)
 
-    [status, headers, [enriched_body.join]]
+    [status, headers, enriched_body]
     # END
   end
 end
