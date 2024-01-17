@@ -14,7 +14,7 @@ class ExecutionTimer
     time = (finish - start) * 1_000_000
     next_body = prev_body.push('</br>', time)
 
-    [status, headers, next_body]
+    [status, headers, [next_body.join]]
     # END
   end
 end
