@@ -15,7 +15,7 @@ class ExecutionTimer
 
     time = (finish - start) * 1000
 
-    [status, headers, [*body, "\n", time]]
+    [status, headers, [[body[0], "\n", time].join]]
     # END
   end
 end
