@@ -9,13 +9,15 @@ class Signature
 
   def call(env)
     # BEGIN
-    status, headers, body = @app.call(env)
+    prev_response = @app.call(env)
+    status, headers, body = prev_response
+
+    return prev_response unless status == 200
 
     dig = Digest::SHA2.hexdigest body[0]
+    enriched_body = body.push('<br>', dig)
 
-    enriched_body = [body[0], "\n", dig].join
-
-    [status, headers, [enriched_body]]
+    [status, headers, enriched_body]
     # END
   end
 end

@@ -7,15 +7,14 @@ class ExecutionTimer
 
   def call(env)
     # BEGIN
-    start = Time.now
+    start = Time.now.to_f
+    status, headers, prev_body = @app.call(env)
+    finish = Time.now.to_f
 
-    status, headers, body = @app.call(env)
+    time = (finish - start) * 1_000_000
+    next_body = prev_body.push('</br>', time)
 
-    finish = Time.now
-
-    time = (finish - start) * 1000
-
-    [status, headers, [[body[0], "\n", time].join]]
+    [status, headers, next_body]
     # END
   end
 end
