@@ -1,4 +1,3 @@
 class PagesController < ApplicationController
-  def show
-  end
+  def show; end
 end
