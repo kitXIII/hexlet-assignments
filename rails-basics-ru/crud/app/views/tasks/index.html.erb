@@ -1,0 +1,19 @@
+<h1>Tasks</h1>
+
+<% @tasks.each do |t| %>
+  <p>
+    <% if t.completed %>
+       <strike><%= link_to t.name, task_path(t) %></strike>
+    <% else %>
+        <%= link_to t.name, task_path(t) %>
+    <% end %>
+    <small>
+        <i>
+            [by <%= t.creator %>]
+            <% if t.performer %>
+              [to <%= t.performer %>]
+            <% end %>
+        </i>
+    </small>
+  </p>
+<% end %>

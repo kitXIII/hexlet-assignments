@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CRUD</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', 'data-turbo-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  </head>
+
+  <body>
+    <%# https://api.rubyonrails.org/classes/ActionDispatch/Flash.html %>
+    <% if flash.any? %>
+      <% flash.each do |key, value| %>
+        <div class="<%= key %>"><%= value %></div>
+        <% end %>
+    <% end %>
+    <ul>
+      <li><%= link_to 'Home', root_path %></li>
+      <%# BEGIN %>
+      <li><%= link_to 'Tasks', tasks_path %></li>
+      <li><%= link_to 'Add new task', new_task_path %></li>
+      <%# END %>
+    </ul>
+    <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+    <% end %>
+      <% if flash[:failure] %>
+      <div class="alert alert-danger"><%= flash[:failure] %></div>
+    <% end %>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<h1>
+    <% if @task.completed %>
+       <strike><%= @task.name %></strike>
+    <% else %>
+        <%= @task.name %>
+    <% end %>
+</h1>
+
+<% if @task.description %>
+    <p>
+        <%= @task.description %>
+    </p>
+    <hr>
+<% end %>
+
+<p>
+    Status: <%= @task.status %>
+</p>
+<p>
+    Createor: <%= @task.creator %>
+</p>
+<% if @task.performer %>
+    <p>
+        Performer: <%= @task.performer %>
+    </p>
+<% end %>
+<p>
+    <%= link_to "Edit", edit_task_path(@task) %>
+    <%= link_to "Delete", task_path(@task),data: { "turbo-method": :delete, turbo_confirm: "Are you sure?" } %>
+</p>

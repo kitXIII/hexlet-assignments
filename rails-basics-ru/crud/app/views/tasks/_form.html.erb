@@ -1,0 +1,58 @@
+<%= form_with model: @task do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+    <% @task.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %><br>
+    <% @task.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+  <div>
+    <%= form.label :creator %><br>
+    <%= form.text_field :creator %>
+    <% @task.errors.full_messages_for(:creator).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+   <div>
+    <%= form.label :performer %><br>
+    <%= form.text_field :performer %>
+    <% @task.errors.full_messages_for(:performer).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+  </div>
+  <br>
+
+    <% if form_edit %>
+        <div>
+            <%= form.label :status %><br>
+            <%= form.text_field :status %>
+            <% @task.errors.full_messages_for(:status).each do |message| %>
+            <div><%= message %></div>
+            <% end %>
+        </div>
+        <br>
+        <div>
+            <%= form.label :completed %><br>
+            <%= form.check_box :completed %>
+        </div>
+        <br>
+    <% end %>
+
+    <div>
+        <%= form.submit form_edit ? "Save" : "Add task", class: "btn btn-primary" %>
+        <%= link_to  "Cancel", form_edit ? task_path(@task) : tasks_path, class: "btn btn-secondary" %>
+    </div>
+<% end %>
