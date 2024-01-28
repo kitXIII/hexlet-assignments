@@ -15,7 +15,7 @@
     <%# https://api.rubyonrails.org/classes/ActionDispatch/Flash.html %>
     <% if flash.any? %>
       <% flash.each do |key, value| %>
-        <div class="<%= key %>"><%= value %></div>
+        <div class="alert <%= key %>"><%= value %></div>
         <% end %>
     <% end %>
     <ul>
@@ -25,12 +25,6 @@
       <li><%= link_to 'Add new task', new_task_path %></li>
       <%# END %>
     </ul>
-    <% if flash[:success] %>
-      <div class="alert alert-success"><%= flash[:success] %></div>
-    <% end %>
-      <% if flash[:failure] %>
-      <div class="alert alert-danger"><%= flash[:failure] %></div>
-    <% end %>
     <%= yield %>
   </body>
 </html>

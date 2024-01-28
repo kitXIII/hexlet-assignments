@@ -13,8 +13,6 @@
 #  updated_at  :datetime         not null
 #
 class Task < ApplicationRecord
-  validates :name, :creator, presence: true
-
-  attribute :status, :string, default: -> { 'New' }
-  attribute :completed, :boolean, default: -> { false }
+  validates :name, :status, :creator, presence: true
+  validates :completed, inclusion: { in: [true, false] }
 end

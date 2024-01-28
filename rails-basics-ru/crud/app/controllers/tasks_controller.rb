@@ -12,14 +12,16 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params.except %i[status, completed])
+    @task = Task.new(
+      task_params
+        .except(%i[completed, status])
+        .merge({ completed: false, status: 'new' })
+    )
 
     if @task.save
-      flash[:success] = 'New task was successfully created'
-      redirect_to task_path(@task)
+      redirect_to @task, notice: 'Task was successfully created.'
     else
-      flash[:failure] = 'Task cannot be created'
-      render :new, status: :unprocessable_entity
+      render :new, :unprocessable_entity
     end
   end
 
@@ -31,29 +33,23 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     if @task.update(task_params)
-      flash[:success] = 'Task was successfully updated'
-      redirect_to task_path(@task)
+      redirect_to @task, notice: 'Task was successfully updated.'
     else
-      flash[:failure] = 'Task cannot be updated'
-      render :edit, status: :unprocessable_entity
+      render :edit, :unprocessable_entity
     end
   end
 
   def destroy
     @task = Task.find(params[:id])
 
-    if @task.destroy
-      flash[:success] = 'Task was successfully deleted'
-      redirect_to tasks_path
-    else
-      flash[:failure] = 'Task cannot be deleted'
-      render task_path(@task)
-    end
+    @task.destroy
+
+    redirect_to tasks_url, notice: "Task was successfully delited."
   end
 
   private
 
   def task_params
-    params.require(:task).permit(:name, :description, :creator, :performer, :status, :completed)
+    params.require(:task).permit(:name, :description, :status, :creator, :performer, :completed)
   end
 end
