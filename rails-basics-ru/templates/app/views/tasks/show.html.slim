@@ -1,0 +1,29 @@
+p
+    strong> Name:
+    = @task.name
+
+- unless @task.description.empty?
+    p
+        strong> Description:
+        = @task.description
+
+p
+    strong> Status:
+    = @task.status
+
+p
+    strong> Creator:
+    = @task.creator
+
+- unless @task.performer.empty?
+    p
+        strong> Performer:
+        = @task.performer
+
+p
+    strong> Completed:
+    = @task.completed
+
+div.d-flex style='gap: 1rem'
+    = link_to 'Tasks', tasks_path, class: 'btn btn-secondary mr-2'
+    = link_to 'Edit', edit_task_path(@task), class: 'btn btn-primary'

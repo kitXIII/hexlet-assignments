@@ -1,0 +1,38 @@
+= form_with model: task do |form|
+    - if task.errors.any?
+        div
+            p
+                = pluralize(task.errors.count, 'Error')
+                | prohibited this task from being saved:
+            ul
+                - task.errors.each do |error|
+                    li=error.full_message
+
+    div.mb-3
+        = form.label :name, class: 'form-label'
+        = form.text_field :name, class: 'form-control'
+
+    div.mb-3
+        = form.label :description, class: 'form-label'
+        = form.text_area :description, class: 'form-control'
+
+    - if type == 'edit'
+        div.mb-3
+            = form.label :status, class: 'form-label'
+            = form.text_field :status, class: 'form-control'
+
+    div.mb-3
+        = form.label :creator, class: 'form-label'
+        = form.text_field :creator, class: 'form-control'
+
+    div.mb-3
+        = form.label :performer, class: 'form-label'
+        = form.text_field :performer, class: 'form-control'
+
+    - if type == 'edit'
+        div.form-check.mb-3
+            = form.label :completed, class: 'form-check-label'
+            = form.check_box :completed, class: 'form-check-input'
+
+    div.mb-3
+        = form.submit type == 'edit' ? 'Save' : 'Add task', class: 'btn btn-primary'

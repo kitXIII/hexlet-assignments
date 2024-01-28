@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Templates
+    meta name="keywords" content="template language"
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application', 'data-turbo-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
+
+  body.container
+    - if flash.any?
+      - flash.each do |key, value|
+        div class="alert #{key}" = value
+
+    nav.navbar
+      ul.navbar-nav.flex-row
+        li.nav-item.p-2= link_to 'Home', root_path, class: 'nav-link'
+        li.nav-item.p-2= link_to 'Tasks', tasks_path, class: 'nav-link'
+    = yield
