@@ -1,0 +1,21 @@
+h1 Posts
+
+p
+    = link_to  'Add new post', new_post_path, class: 'btn btn-outline-primary'
+
+table.table
+    thead
+        tr
+            th Title
+            th Summary
+            th Published
+            th colspan="3"
+    tbody
+        - @posts.each do |post|
+            tr
+                td= post.title
+                td= post.summary
+                td= post.published
+                td= link_to t('show'), post
+                td= link_to t('edit'), edit_post_path(post)
+                td= link_to t('delete'), post, data:{ turbo_confirm: 'Are you sure?', turbo_method: :delete }

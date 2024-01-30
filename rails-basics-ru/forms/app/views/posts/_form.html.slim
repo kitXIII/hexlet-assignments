@@ -1,0 +1,7 @@
+= simple_form_for post, html: { class: 'mb-3' } do |f|
+    = f.input :title
+    = f.input :summary
+    = f.input :body
+    - if type == 'edit'
+        = f.input :published
+    = f.button :submit, type == 'edit' ? 'Save' : 'Create', class: 'btn-primary'
