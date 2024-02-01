@@ -1,0 +1,20 @@
+table.table.table-striped.table-hover.mb-5
+  thead
+    tr
+      th{ scope = 'col' } #
+      th{ scope = 'col' } Name
+      th{ scope = 'col' } User
+      th{ scope = 'col' } Status
+      th
+
+  tbody
+    - tasks.each_with_index do |task, i|
+      tr
+        th{ scope = 'row' } = i + 1
+        td = task.name
+        td = task.user.name
+        td = task.status.name
+        td.d-flex
+          .me-4 = link_to 'Show', task
+          .me-4 = link_to 'Edit', edit_task_path(task)
+          = link_to 'Destroy', task, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'link-danger'

@@ -1,0 +1,9 @@
+= simple_form_for(task) do |f|
+  = f.input :name
+  = f.input :description
+  - if type == 'edit'
+    = f.association :status
+  - else
+    = f.association :status, default: 1
+  = f.association :user, prompt: 'Please, select a user'
+  = f.button :submit, class: 'btn btn-success mt-4 btn-block'
