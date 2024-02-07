@@ -5,7 +5,7 @@ require 'test_helper'
 class PostsCommentsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
-    @comment = @post.post_comments.first
+    @comment = @post.comments.first
 
     @attrs = {
       body: Faker::ChuckNorris.fact

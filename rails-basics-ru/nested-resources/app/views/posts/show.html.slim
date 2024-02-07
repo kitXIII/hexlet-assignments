@@ -4,11 +4,9 @@ p
   strong.me-2 Body:
   = @post.body
 / BEGIN
-- @post.post_comments.each do |comment|
-  hr
+- @post.comments.each do |comment|
   == render "posts/comments/comment", comment: comment
 
-hr
 == render "posts/comments/form", comment: @comment, url: post_comments_path(@post), button_text: 'Add'
 / END
 hr

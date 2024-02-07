@@ -5,12 +5,13 @@ class Posts::CommentsController < Posts::ApplicationController
   end
 
   def create
-    @post = resource_post
-    @comment = PostComment.new(**comment_params, post: @post)
+    @comment = PostComment.new(comment_params)
+    @comment.post = resource_post
 
     if @comment.save
-      redirect_to post_path(@post), notice: "Post comment was successfully created."
+      redirect_to post_path(resource_post), notice: "Post comment was successfully created."
     else
+      @post = resource_post
       render "posts/show", status: :unprocessable_entity
     end
   end
