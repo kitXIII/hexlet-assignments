@@ -1,0 +1,8 @@
+en:
+  layouts:
+    application:
+      hexlet_title: © Hexlet, %{year}
+    shared:
+      nav:
+        hexlet_logo: Hexlet
+        home: Home

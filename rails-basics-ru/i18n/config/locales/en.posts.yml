@@ -1,7 +1,28 @@
 en:
   posts:
     # BEGIN
-    
+    create:
+      success: Post was created.
+    destroy:
+      success: Post was destroyed.
+    edit:
+      title: Edition of post
+    index:
+      comments_count:
+        zero: No comments
+        one: 1 comment
+        few: '%{count} comments'
+        many: '%{count} comments'
+        other: '%{count} comments'
+      create_new_post: New Post
+      title: Title
+    new:
+      title: New Post
+    update:
+      success: Post was updated.
+    show:
+      body: Content
+      comments: Comments
     # END
 
     comments:

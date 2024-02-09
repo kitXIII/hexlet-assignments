@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'jbuilder'
 gem 'puma'
-gem 'rails', '~> 7.0'
+gem 'rails', '~> 7.0.1'
 gem 'sqlite3'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
@@ -28,7 +28,7 @@ gem 'simple_form'
 gem 'slim-rails'
 
 # BEGIN
-
+gem 'rails-i18n'
 # END
 
 group :development, :test do
@@ -43,7 +43,7 @@ group :development do
   gem 'web-console', '>= 4.1.0'
 
   # BEGIN
-  
+  gem 'i18n-debug'
   # END
 end
 
