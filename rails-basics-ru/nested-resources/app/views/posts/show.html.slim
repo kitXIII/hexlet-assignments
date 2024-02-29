@@ -5,9 +5,9 @@ p
   = @post.body
 / BEGIN
 - @post.comments.each do |comment|
-  == render "posts/comments/comment", comment: comment
+  = render "posts/comments/comment", comment: comment
 
-== render "posts/comments/form", comment: @comment, url: post_comments_path(@post), button_text: 'Add'
+= render "posts/comments/form", comment: @comment, url: post_comments_path(@post), button_text: 'Add'
 / END
 hr
 

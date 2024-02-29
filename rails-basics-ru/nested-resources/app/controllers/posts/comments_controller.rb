@@ -1,7 +1,7 @@
 class Posts::CommentsController < Posts::ApplicationController
   before_action :set_comment, only: %i[ edit update destroy ]
 
-  def edit
+  def edit # rubocop:disable Style/EmptyMethod
   end
 
   def create
