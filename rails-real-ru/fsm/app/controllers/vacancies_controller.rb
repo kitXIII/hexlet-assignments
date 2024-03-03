@@ -21,7 +21,17 @@ class VacanciesController < ApplicationController
   end
 
   # BEGIN
-  
+  def publish
+    @vacancy = Vacancy.find(params[:id])
+    @vacancy.publish!
+    redirect_to vacancies_path
+  end
+
+  def archive
+    @vacancy = Vacancy.find(params[:id])
+    @vacancy.archive!
+    redirect_to vacancies_path
+  end
   # END
 
   private
