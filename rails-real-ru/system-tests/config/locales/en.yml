@@ -44,3 +44,5 @@ en:
         fail: 'Comment has not been added'
       update:
         success: 'Comment was successfully updated.'
+      destroy:
+        success: 'Comment was successfully destroyed.'
