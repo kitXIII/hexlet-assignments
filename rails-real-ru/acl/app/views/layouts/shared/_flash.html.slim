@@ -1,0 +1,5 @@
+- if flash.any?
+  .container.my-2
+    - flash.each_value do |_type, msg|
+      .alert.alert-info
+        = msg
