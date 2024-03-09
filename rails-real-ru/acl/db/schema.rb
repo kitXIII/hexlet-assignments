@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2021_10_02_100641) do
+ActiveRecord::Schema[7.0].define(version: 2021_10_02_100641) do
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "body"
