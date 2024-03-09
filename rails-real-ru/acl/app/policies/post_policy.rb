@@ -2,6 +2,16 @@
 
 class PostPolicy < ApplicationPolicy
   # BEGIN
-  
+  def create?
+    user
+  end
+
+  def update?
+    user == record.author || user&.admin
+  end
+
+  def destroy?
+    user&.admin
+  end
   # END
 end
