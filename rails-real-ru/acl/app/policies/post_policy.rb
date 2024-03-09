@@ -7,11 +7,21 @@ class PostPolicy < ApplicationPolicy
   end
 
   def update?
-    user == record.author || user&.admin
+    admin? || author?
   end
 
   def destroy?
-    user&.admin
+    admin?
+  end
+
+  private
+
+  def author?
+    record.author == user
+  end
+
+  def admin?
+    user&.admin?
   end
   # END
 end
