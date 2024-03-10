@@ -39,7 +39,9 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # BEGIN
-  
+  config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.default_url_options = { host: 'http://localhost:3000' } # имя хоста может отличатьcя, если приложение запущено на другом домене или порте
   # END
 
   # Print deprecation notices to the Rails logger.
