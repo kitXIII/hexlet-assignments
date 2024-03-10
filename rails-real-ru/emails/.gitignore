@@ -1,0 +1,11 @@
+*.lock
+vendor/
+package-lock.json
+Gemfile.lock
+node_modules/
+tmp/
+!.keep
+*.log
+.env
+/app/assets/builds/*
+!/app/assets/builds/.keep
