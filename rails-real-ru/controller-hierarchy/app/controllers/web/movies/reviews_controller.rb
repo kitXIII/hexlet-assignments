@@ -6,14 +6,14 @@ class Web::Movies::ReviewsController < Web::Movies::ApplicationController
   end
 
   def new
-    @review = Review.new
+    @review = resource_movie.reviews.new
   end
 
   def create
     @review = resource_movie.reviews.build(review_params)
 
     if @review.save
-      redirect_to movie_reviews_path(resource_movie), notice: t('success')
+      redirect_to movie_reviews_path, notice: t('success')
     else
       flash[:alert] = t('fail')
       render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class Web::Movies::ReviewsController < Web::Movies::ApplicationController
     @review = resource_movie.reviews.find(params[:id])
 
     if @review.update(review_params)
-      redirect_to movie_reviews_path(resource_movie), notice: t('success')
+      redirect_to movie_reviews_path, notice: t('success')
     else
       flash[:alert] = t('fail')
       render :edit, status: :unprocessable_entity
@@ -40,7 +40,7 @@ class Web::Movies::ReviewsController < Web::Movies::ApplicationController
 
     @review&.destroy!
 
-    redirect_to movie_reviews_path(resource_movie), notice: t('success')
+    redirect_to movie_reviews_path, notice: t('success')
   end
 
   private

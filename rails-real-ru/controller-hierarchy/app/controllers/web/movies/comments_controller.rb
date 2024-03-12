@@ -6,14 +6,14 @@ class Web::Movies::CommentsController < Web::Movies::ApplicationController
   end
 
   def new
-    @comment = Comment.new
+    @comment = resource_movie.comments.new
   end
 
   def create
     @comment = resource_movie.comments.build(comment_params)
 
     if @comment.save
-      redirect_to movie_comments_path(resource_movie), notice: t('success')
+      redirect_to movie_comments_path, notice: t('success')
     else
       flash[:alert] = t('fail')
       render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class Web::Movies::CommentsController < Web::Movies::ApplicationController
     @comment = resource_movie.comments.find(params[:id])
 
     if @comment.update(comment_params)
-      redirect_to movie_comments_path(resource_movie), notice: t('success')
+      redirect_to movie_comments_path, notice: t('success')
     else
       flash[:alert] = t('fail')
       render :edit, status: :unprocessable_entity
@@ -40,7 +40,7 @@ class Web::Movies::CommentsController < Web::Movies::ApplicationController
 
     @comment&.destroy!
 
-    redirect_to movie_comments_path(resource_movie), notice: t('success')
+    redirect_to movie_comments_path, notice: t('success')
   end
 
   private
