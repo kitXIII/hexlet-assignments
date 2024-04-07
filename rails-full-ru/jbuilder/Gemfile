@@ -42,7 +42,8 @@ gem 'simple_form'
 gem 'slim-rails'
 
 # BEGIN
-
+gem 'active_model_serializers'
+gem 'responders'
 # END
 
 group :development, :test do
