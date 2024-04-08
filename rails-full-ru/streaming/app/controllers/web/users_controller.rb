@@ -4,7 +4,7 @@ require 'csv'
 
 class Web::UsersController < Web::ApplicationController
   # BEGIN
-  
+  include ActionController::Live
   # END
 
   def index
@@ -61,7 +61,23 @@ class Web::UsersController < Web::ApplicationController
   end
 
   # BEGIN
-  
+  def stream_csv
+    response.headers['Content-Type'] = 'text/event-stream'
+    response.headers['Last-Modified'] = Time.current.httpdate
+
+    # disposition = ActionDispatch::Http::ContentDisposition.format(disposition: "attachment", filename: 'stream_csv.csv')
+    # response.headers["Content-Disposition"] = disposition
+
+    column_names = User.column_names
+
+    response.stream.write column_names.to_csv
+
+    User.find_each do |record|
+      response.stream.write record.attributes.values_at(*column_names).to_csv
+    end
+  ensure
+    response.stream.close
+  end
   # END
 
   private
