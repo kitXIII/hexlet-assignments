@@ -1,0 +1,10 @@
+*.lock
+vendor/
+package-lock.json
+Gemfile.lock
+node_modules/
+tmp/
+!.keep
+*.log
+!*/assignment/app/assets/builds/application.css
+!*/assignment/app/assets/builds/application.js
