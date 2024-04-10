@@ -9,8 +9,8 @@ class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
     link = '/some/path'
 
     uri_template = Addressable::Template.new "https://api.github.com/repos#{link}"
-    stub_request(:get, uri_template).
-      to_return(body: response, headers: { content_type: 'application/json' })
+    stub_request(:get, uri_template)
+      .to_return(body: response, headers: { content_type: 'application/json' })
 
     post repositories_url params: { repository: { link: } }
 
