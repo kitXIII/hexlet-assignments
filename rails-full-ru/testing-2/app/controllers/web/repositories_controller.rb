@@ -17,7 +17,7 @@ class Web::RepositoriesController < Web::ApplicationController
     @repository = Repository.find params[:id]
   end
 
-  def create
+  def create # rubocop:disable Metrics/AbcSize
     # BEGIN
     @repository = Repository.new(permitted_params)
 

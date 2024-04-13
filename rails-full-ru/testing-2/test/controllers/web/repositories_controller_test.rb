@@ -4,20 +4,30 @@ require 'test_helper'
 
 class Web::RepositoriesControllerTest < ActionDispatch::IntegrationTest
   # BEGIN
+  setup do
+    @repo = repositories :one
+
+    @attrs = {
+      link: 'https://github.com/railsware/js-routes'
+    }
+  end
+
   test 'should create repo' do
     response = load_fixture('files/response.json')
-    link = '/some/path'
 
-    uri_template = Addressable::Template.new "https://api.github.com/repos#{link}"
-    stub_request(:get, uri_template)
-      .to_return(body: response, headers: { content_type: 'application/json' })
+    stub_request(:get, 'https://api.github.com/repos/railsware/js-routes')
+      .to_return(
+        body: response,
+        headers: { content_type: 'application/json' }
+      )
 
-    post repositories_url params: { repository: { link: } }
+    post repositories_url params: { repository: @attrs }
 
-    repo = Repository.find_by(link:)
+    repository = Repository.find_by(@attrs)
 
-    assert repo.present?
-    assert_redirected_to repositories_url
+    assert { repository }
+    assert { repository.description.present? }
+    assert_redirected_to repository_url(repository)
   end
   # END
 end
