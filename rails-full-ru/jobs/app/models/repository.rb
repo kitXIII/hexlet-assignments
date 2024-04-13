@@ -6,12 +6,12 @@ class Repository < ApplicationRecord
   # BEGIN
   include AASM
 
-  aasm whiny_transitions: false do
+  aasm do
     state :created, initial: true
     state :fetching, :fetched, :failed
 
     event :fetch do
-      transitions from: %i[created failed fetching fetched], to: :fetching
+      transitions to: :fetching
     end
 
     event :done do
@@ -19,7 +19,7 @@ class Repository < ApplicationRecord
     end
 
     event :fail do
-      transitions from: %i[created failed fetched], to: :failed
+      transitions to: :failed
     end
   end
   # END

@@ -3,10 +3,10 @@
 class RepositoryLoaderJob < ApplicationJob
   queue_as :default
 
-  def perform(link) # rubocop:disable Metrics/AbcSize
-    repository = Repository.find_by(link:)
+  def perform(repository_id) # rubocop:disable Metrics/AbcSize
+    repository = Repository.find repository_id
 
-    return if repository.blank? || !repository.may_fetch?
+    return if repository.blank?
 
     begin
       repository.fetch!
