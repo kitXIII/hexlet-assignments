@@ -41,7 +41,7 @@ class Web::RepositoriesController < Web::ApplicationController
   def update_repos
     # BEGIN
     Repository.find_each do |repository|
-      RepositoryLoaderJob.perform_later(repository.link)
+      RepositoryLoaderJob.perform_later(repository.id)
     end
     # END
   end
