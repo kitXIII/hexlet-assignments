@@ -15,19 +15,33 @@ class Web::RepositoriesController < Web::ApplicationController
 
   def create
     # BEGIN
-    
+    @repository = Repository.new(permitted_params)
+
+    if @repository.save
+      RepositoryLoaderJob.perform_now(@repository.link)
+
+      redirect_to @repository
+    else
+      render :new, status: :unprocessable_entity
+    end
     # END
   end
 
   def update
     # BEGIN
-    
+    @repository = Repository.find params[:id]
+
+    RepositoryLoaderJob.perform_now(@repository.link)
+
+    redirect_to repositories_path
     # END
   end
 
   def update_repos
     # BEGIN
-    
+    Repository.find_each do |repository|
+      RepositoryLoaderJob.perform_later(repository.link)
+    end
     # END
   end
 
