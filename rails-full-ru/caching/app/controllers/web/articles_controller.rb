@@ -2,6 +2,7 @@
 
 class Web::ArticlesController < Web::ApplicationController
   # BEGIN
+  caches_action :show
   # END
 
   def index
